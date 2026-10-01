@@ -8,6 +8,6 @@ package Enums;
  *
  * @author romel
  */
-public enum Role {
-    ADMINISTRATOR, STAFF, STUDENT
+public enum EquipmentStatus {
+    AVAILABLE, BOOKED, BORROWED, UNDER_MAINTENANCE, RETIRED
 }

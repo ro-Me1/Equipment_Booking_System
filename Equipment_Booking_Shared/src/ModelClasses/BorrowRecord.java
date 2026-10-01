@@ -8,6 +8,137 @@ package ModelClasses;
  *
  * @author romel
  */
-public class BorrowRecord {
+import java.io.Serializable;
+import java.time.Duration;
+import java.time.LocalDateTime;
+public class BorrowRecord implements Serializable {
+    
+    private String recordId;
+    private Booking booking; //Optional link: can be null for walk-ins
+    private User borrower;
+    private Equipment equipment;
+    private User issuedBy; //Must be evaluated as Staff/Admin on the service layer
+    private LocalDateTime checkoutTime;
+    private LocalDateTime expectedReturnTime;
+    private LocalDateTime actualReturnTime; //Remains null until item is physically back
+    private String conditionOnOutput;
+    private String conditionOnInput;
+    
+    public BorrowRecord() {}
+
+    public BorrowRecord(String recordId, Booking booking, User borrower, Equipment equipment, User issuedBy, LocalDateTime checkoutTime, LocalDateTime expectedReturnTime, LocalDateTime actualReturnTime, String conditionOnOutput, String conditionOnInput) {
+        this.recordId = recordId;
+        this.booking = booking;
+        this.borrower = borrower;
+        this.equipment = equipment;
+        this.issuedBy = issuedBy;
+        this.checkoutTime = checkoutTime;
+        this.expectedReturnTime = expectedReturnTime;
+        this.actualReturnTime = actualReturnTime;
+        this.conditionOnOutput = conditionOnOutput;
+        this.conditionOnInput = conditionOnInput;
+    }
+    
+    /*
+    // Core Business Logic Methods called by your Unit Tests
+            public boolean isOverdue() {
+                if (actualReturnTime != null) {
+                    return false; // Already returned safely
+                }
+                if (expectedReturnTime == null) {
+                    return false;
+                }
+                return LocalDateTime.now().isAfter(expectedReturnTime);
+            }
+
+            public Duration calculateLateDuration() {
+                if (!isOverdue()) {
+                    return Duration.ZERO;
+                }
+                return Duration.between(expectedReturnTime, LocalDateTime.now());
+            }
+    */
+
+    public String getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(String recordId) {
+        this.recordId = recordId;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public User getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(User borrower) {
+        this.borrower = borrower;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    public User getIssuedBy() {
+        return issuedBy;
+    }
+
+    public void setIssuedBy(User issuedBy) {
+        this.issuedBy = issuedBy;
+    }
+
+    public LocalDateTime getCheckoutTime() {
+        return checkoutTime;
+    }
+
+    public void setCheckoutTime(LocalDateTime checkoutTime) {
+        this.checkoutTime = checkoutTime;
+    }
+
+    public LocalDateTime getExpectedReturnTime() {
+        return expectedReturnTime;
+    }
+
+    public void setExpectedReturnTime(LocalDateTime expectedReturnTime) {
+        this.expectedReturnTime = expectedReturnTime;
+    }
+
+    public LocalDateTime getActualReturnTime() {
+        return actualReturnTime;
+    }
+
+    public void setActualReturnTime(LocalDateTime actualReturnTime) {
+        this.actualReturnTime = actualReturnTime;
+    }
+
+    public String getConditionOnOutput() {
+        return conditionOnOutput;
+    }
+
+    public void setConditionOnOutput(String conditionOnOutput) {
+        this.conditionOnOutput = conditionOnOutput;
+    }
+
+    public String getConditionOnInput() {
+        return conditionOnInput;
+    }
+
+    public void setConditionOnInput(String conditionOnInput) {
+        this.conditionOnInput = conditionOnInput;
+    }
+    
+    
     
 }

@@ -8,6 +8,6 @@ package Enums;
  *
  * @author romel
  */
-public enum Role {
-    ADMINISTRATOR, STAFF, STUDENT
+public enum BookingStatus {
+    PENDING, CONFIRMED, CANCELLED, FULFILLED
 }
