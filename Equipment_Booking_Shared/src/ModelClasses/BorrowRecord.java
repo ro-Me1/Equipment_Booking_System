@@ -11,6 +11,7 @@ package ModelClasses;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import Enums.Permission;
 public class BorrowRecord implements Serializable {
     
     private String recordId;
@@ -57,11 +58,30 @@ public class BorrowRecord implements Serializable {
                 }
                 return Duration.between(expectedReturnTime, LocalDateTime.now());
             }
+    
+           
     */
+    
+    /*
+    public BorrowRecord processCheckOut(Booking booking, User staffMember) {
+    if (!staffMember.hasPermission(Permission.APPROVE_BORROW)) {
+        throw new SecurityException("Unauthorized Operator: This account cannot authorize equipment checkouts.");
+    }
+    
+    BorrowRecord record = new BorrowRecord();
+    record.setBooking(booking);
+    record.setBorrower(booking.getUser());
+    record.setEquipment(booking.getEquipment());
+    record.setIssuedBy(staffMember); // Verified safe operator
+    record.setCheckoutTime(LocalDateTime.now());
+    
+    return record;
+    }
 
     public String getRecordId() {
         return recordId;
     }
+*/
 
     public void setRecordId(String recordId) {
         this.recordId = recordId;

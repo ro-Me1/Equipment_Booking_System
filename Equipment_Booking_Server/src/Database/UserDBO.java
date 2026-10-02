@@ -8,6 +8,20 @@ package Database;
  *
  * @author romel
  */
-public class UserDBO {
+
+import Enums.Role;
+import ModelClasses.User;
+import java.util.Optional;
+
+/** What the services need from storage. The PostgreSQL class implements this later. */
+public interface UserDBO {
+    
+    Optional<User> findById(String userId);
+    Optional<User> findByEmail(String email);
+    
+    /** Insert or Update */
+    void save(User user);
+    
+    long countActiveByRole(Role role);
     
 }

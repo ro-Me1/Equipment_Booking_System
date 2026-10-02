@@ -11,6 +11,7 @@ package ModelClasses;
 import java.io.Serializable;
 import Enums.EquipmentStatus;
 import Enums.Role;
+import Enums.Permission;
 import java.util.List;
 
 public class Equipment implements Serializable {
@@ -21,6 +22,7 @@ public class Equipment implements Serializable {
    private EquipmentStatus currentStatus;
    private List<Role> allowedRoles; //tracks which roles can access this asset
    private String location;
+   private Permission requiredPermissionToBorrow = Permission.BOOK_EQUIPMENT;
    
    public Equipment() {}
 
@@ -34,18 +36,18 @@ public class Equipment implements Serializable {
         this.location = location;
     }
 
-    /*
+   /*
     // Core Business Logic Method called by your Unit Tests
-    public boolean isAvailableForRole(UserRole role) {
-        if (this.currentStatus != EquipmentStatus.AVAILABLE) {
+    public boolean isAvailableForUser(User user) {
+        if (currentStatus != EquipmentStatus.AVAILABLE) {
             return false;
         }
-        if (this.allowedRoles == null) {
-            return false;
-        }
-        return this.allowedRoles.contains(role);
+    
+        return user.hasPermission(this.requiredPermissionToBorrow);
     }
-    */
+*/
+    
+   
     public String getEquipmentId() {
         return EquipmentId;
     }

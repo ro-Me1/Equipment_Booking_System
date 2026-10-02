@@ -10,27 +10,35 @@ package ModelClasses;
  */
 import java.io.Serializable;
 import Enums.Role;
+import Enums.Permission;
+import java.util.EnumSet;
 
 public class User implements Serializable {
     private String userId;
     private String firstName;
     private String lastName;
     private String email;
-    private String passwordHash;
+    private String passwordHash;  //use transient data type transient: never serialized so it never sends over RMI.
     private Role role;
-    private boolean isActive;
+    private boolean active;
+    private EnumSet<Permission> grantedPermissions = EnumSet.noneOf(Permission.class);
+    private EnumSet<Permission> revokedPermissions = EnumSet.noneOf(Permission.class);
     
     public User() {}
     
-    public User (String userId, String firstName, String lastName, String email, String passwordHash, Role role, boolean isActive){
+    public User (String userId, String firstName, String lastName, String email, String passwordHash, Role role, boolean isActive, EnumSet<Permission> userPermission){
     this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.passwordHash = passwordHash;
     this.role = role;
-    this.isActive = isActive;
+    this.active = isActive;
+    
     }
+
+
+   
     
     public String getFullName() {
      return firstName + " " + lastName;
@@ -80,17 +88,50 @@ public class User implements Serializable {
         return role;
     }
 
+    
     public void setRole(Role role) {
         this.role = role;
     }
-
-    public boolean isIsActive() {
-        return isActive;
+    
+    public boolean isActive() {
+        return active;
     }
 
     public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
+        this.active = active;
     }
     
+    public EnumSet<Permission> getGrantedPermissions() {
+        return grantedPermissions;
+    }
+
+    public void setGrantedPermissions(EnumSet<Permission> granted) {
+        this.grantedPermissions = (granted == null) ? EnumSet.noneOf(Permission.class) : granted;
+    }
     
+    public EnumSet<Permission> getRevokedPermissions() {
+        return revokedPermissions;
+    }
+    
+    public void setRevokedPermissions(EnumSet<Permission> revoked) {
+        this.revokedPermissions = (revoked == null) ? EnumSet.noneOf(Permission.class) : revoked;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof User)) return false;
+    User other = (User) o;
+    return userId != null && userId.equals(other.userId);
+    }
+    
+    @Override
+    public int hashCode() {
+    return userId == null ? 0 : userId.hashCode();
+    }
+    
+    @Override
+    public String toString() {
+    return "User{" +userId+ ", " +getFullName()+ ", " +role+ ", active=" +active+ "}";
+    }
 }
