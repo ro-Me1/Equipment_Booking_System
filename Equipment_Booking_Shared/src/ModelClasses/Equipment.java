@@ -15,7 +15,7 @@ import Enums.Permission;
 import java.util.List;
 
 public class Equipment implements Serializable {
-   private String EquipmentId;
+   private String equipmentId;
    private String name;
    private String category;
    private String description;
@@ -27,7 +27,7 @@ public class Equipment implements Serializable {
    public Equipment() {}
 
     public Equipment(String EquipmentId, String name, String category, String description, EquipmentStatus currentStatus, List<Role> allowedRoles, String location) {
-        this.EquipmentId = EquipmentId;
+        this.equipmentId = EquipmentId;
         this.name = name;
         this.category = category;
         this.description = description;
@@ -49,11 +49,11 @@ public class Equipment implements Serializable {
     
    
     public String getEquipmentId() {
-        return EquipmentId;
+        return equipmentId;
     }
 
     public void setEquipmentId(String EquipmentId) {
-        this.EquipmentId = EquipmentId;
+        this.equipmentId = EquipmentId;
     }
 
     public String getName() {
@@ -102,6 +102,32 @@ public class Equipment implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+    
+    public Permission getRequiredPermissionToBorrow(){
+        return requiredPermissionToBorrow;
+    }
+    
+    public void setRequiredPermissionToBorrow(Permission p) {
+        this.requiredPermissionToBorrow = p;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+    if(this == o) return true;
+    if (!(o instanceof Equipment)) return false;
+    Equipment other = (Equipment) o;
+    return equipmentId != null && equipmentId.equals(other.equipmentId);
+    }
+    
+    @Override
+    public int hashCode() {
+    return equipmentId == null ? 0 : equipmentId.hashCode();
+    }
+    
+    @Override
+    public String toString() {
+        return "Equipment{" +equipmentId+ ", " +currentStatus+ "}";
     }
    
    

@@ -8,6 +8,19 @@ package Database;
  *
  * @author romel
  */
-public class EquipmentDBO {
+
+import Enums.EquipmentStatus;
+import ModelClasses.Equipment;
+import java.util.List;
+import java.util.Optional;
+
+public interface EquipmentDBO {
     
+    Optional<Equipment> findById(String equipmentId);
+    
+    List<Equipment> findByStatus(EquipmentStatus status);
+    
+    
+    /** Insert or update. */
+    void save(Equipment equipment);
 }

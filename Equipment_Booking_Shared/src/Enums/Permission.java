@@ -12,5 +12,6 @@ public enum Permission {
     BOOK_EQUIPMENT,
     APPROVE_BORROW, //Only for Staff/Admin
     MANAGE_USERS,   //Only for Admin
+    MANAGE_EQUIPMENT,
     OVERRIDE_STATUS
 }

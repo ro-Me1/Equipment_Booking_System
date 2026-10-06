@@ -14,10 +14,11 @@ import Enums.BookingStatus;
 
 public class Booking implements Serializable {
     
+    private static final long serialVersionUID = 1L;
     private String bookId;
     private User user;
     private Equipment equipment;
-    private LocalDateTime bookingDate;
+    private LocalDateTime bookingDate; //when the reservation was made
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private BookingStatus bookingStatus;
@@ -34,15 +35,6 @@ public class Booking implements Serializable {
         this.bookingStatus = bookingStatus;
     }
         
-    /* 
-    // Core Business Logic Method called by your Unit Tests
-        public boolean isValidTimeframe() {
-            if (startTime == null || endTime == null) {
-                return false;
-            }
-            return endTime.isAfter(startTime);
-        }   
-    */
     public String getBookId() {
         return bookId;
     }
@@ -98,6 +90,21 @@ public class Booking implements Serializable {
     public void setBookingStatus(BookingStatus bookingStatus) {
         this.bookingStatus = bookingStatus;
     }
+    
+    @Override
+    public boolean equals(Object o) {
+    
+        if (this == o) return true;
+        if(!(o instanceof Booking)) return false;
+        Booking other = (Booking) o;
+        return bookId != null && bookId.equals(other.bookId);
+    }
+    
+    @Override
+    public int hashcode() {
+        return bookId == null ? 0 : bookId.hashCode();
+    }
+    
     
     
 }

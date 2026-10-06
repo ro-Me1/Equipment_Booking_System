@@ -8,6 +8,17 @@ package Database;
  *
  * @author romel
  */
-public class BookingDBO {
+
+import ModelClasses.Booking;
+import java.util.List;
+import java.util.Optional;
+
+public interface BookingDBO {
+    Optional<Booking> findById(String bookId);
     
+    /** Bookings for this equipment whose status is PENDING or CONFIRMED. */
+    List<Booking> findActiveByEquipment(String equipmentId);
+    
+    /** Insert or update. */
+    void save(Booking booking);
 }

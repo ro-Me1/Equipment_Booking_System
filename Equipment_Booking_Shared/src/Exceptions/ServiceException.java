@@ -8,6 +8,15 @@ package Exceptions;
  *
  * @author romel
  */
-public class ServiceException {
+public class ServiceException extends Exception {
     
+    public ServiceException(String message) {
+        super(message);
+    }
+    
+    public class BusinessRulesException extends ServiceException{
+        public BusinessRulesException(String message) {
+            super(message);
+        }
+    }
 }

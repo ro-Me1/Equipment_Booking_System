@@ -8,6 +8,18 @@ package Database;
  *
  * @author romel
  */
-public class BorrowRecordDBO {
+
+import ModelClasses.BorrowRecord;
+import java.util.List;
+import java.util.Optional;
+
+public interface BorrowRecordDBO {
     
+    Optional<BorrowRecord> findById(String recordId);
+    
+    /** Records whose actualReturnTime is still null. */
+    List<BorrowRecord> findOpen();
+    
+    /** Insert or update. */
+    void save(BorrowRecord record);
 }

@@ -12,6 +12,8 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import Enums.Permission;
+
+
 public class BorrowRecord implements Serializable {
     
     private String recordId;
@@ -159,6 +161,17 @@ public class BorrowRecord implements Serializable {
         this.conditionOnInput = conditionOnInput;
     }
     
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(!(o instanceof BorrowRecord)) return false;
+        BorrowRecord other = (BorrowRecord) o;
+        return recordId != null && recordId.equals(other.recordId);
+    }
     
+    @Override
+    public int hashCode() {
+        return recordId == null ? 0 : recordId.hashCode();
+    }
     
 }
